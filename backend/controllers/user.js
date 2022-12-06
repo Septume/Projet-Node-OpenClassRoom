@@ -22,8 +22,11 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
+    //récupération email dans la bdd
     User.findOne({email: req.body.email})
+    //défini un user
     .then(user => {
+        //si user est strictement égale à null
         if (user === null) {
             res.status(401).json({ message : 'Paire identifiant/mot de passe incorrect'});
         } else {
